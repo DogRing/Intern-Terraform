@@ -1,0 +1,22 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:region:643416288586:task-definition/family:revision"
+        LoadBalancerInfo:
+          ContainerName: "cName"
+          ContainerPort: 8080
+        PlatformVersion: "LATEST"
+        # NetworkConfiguration: 
+        #   AwsvpcConfiguration:
+        #     Subnets: ["subnet-1234abcd","subnet-5678abcd"]
+        #     SecurityGroups: ["chwan-ecs-task-sg"]
+        #     AssignPublicIp: "DISABLED"
+        # CapacityProviderStrategy:
+        #   - Base: 1
+        #     CapacityProvider: "FARGATE_SPOT"
+        #     Weight: 2
+        #   - Base: 0
+        #     CapacityProvider: "FARGATE"
+        #     Weight: 1

@@ -1,0 +1,37 @@
+{
+    "family": "chwan-ecs",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "exe-role-arn",
+    "cpu": "512",
+    "memory": "1024",
+    "requiresCompatibilities": [ "FARGATE" ],
+    "taskRoleArn" : "task-role-arn",
+    "containerDefinitions": [{
+        "name" : "spring",
+        "image" : "643416288586.dkr.ecr.us-east-2.amazonaws.com/chwan-ecr:latest",
+        "cpu" : 256,
+        "memory" : 1024,
+        "essential" : true,
+        "portMappings" : [
+            {
+                "containerPort" : 8080
+            }
+        ],
+        "environment" : [{
+            "name": "serverIP",
+            "value": "${apm-server}"
+        }, {
+            "name": "dbdomain",
+            "value": "${db-domain}"
+        }, {
+            "name": "dbuser",
+            "value": "${db-user}"
+        }, {
+            "name": "dbpw",
+            "value": "${db-pw}"
+        }, {
+            "name": "bucketname",
+            "value": "${bucket-name}"
+        }]
+    }]
+}
